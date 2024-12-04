@@ -1,2 +1,27 @@
 <h1>Kittens#index</h1>
-<p>Find me in app/views/kittens/index.html.erb</p>
+<h1>All Kittens</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @kittens.each do |kitten| %>
+      <tr>
+        <td><%= kitten.name %></td>
+        <td><%= kitten.age %></td>
+        <td>
+          <%= link_to 'Show', kitten_path(kitten) %> |
+          <%= link_to 'Edit', edit_kitten_path(kitten) %>
+          <%= link_to 'Delete', kitten_path(kitten),
+          data: {turbo_method: :delete, turbo_confirm: 'Are you sure you wish to delete this cute cuddly kitten?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Kitten', new_kitten_path %>
